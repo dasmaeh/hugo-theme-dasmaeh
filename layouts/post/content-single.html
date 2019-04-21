@@ -1,0 +1,25 @@
+<article class="is-content is-stack-40">
+
+        <header class="is-stack-24">
+  
+          {{ .Render "featured" }}
+  
+          <a name="top"></a>
+          <h1 class="is-stack-16">{{ .Title }}</h1>
+  
+          {{ .Render "meta_time" }}
+          {{ .Render "meta_categories" }}
+          {{ .Render "meta_tags" }}
+        </header>
+  
+        {{ .Render "toc" }}
+  
+        {{ partial "toplink" .}}
+  
+  
+        {{ .Content }}
+  
+        <footer class="is-border-top is-stack-20">
+          {{ .Render "social_share" }}
+        </footer>
+      </article>

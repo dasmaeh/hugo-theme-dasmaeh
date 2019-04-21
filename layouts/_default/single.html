@@ -1,0 +1,16 @@
+{{ partial "header" .}}
+
+{{ partial "navbar" .}}
+
+<!-- main -->
+<div class="is-wrapper is-stack-40">
+  <div class="is-container is-container-medium is-center">
+    {{ .Render "content-single" }}
+  </div>
+
+  {{ .Render "nav_prevnext" }}
+  {{ .Render "nav_related" }}
+
+</div>
+
+{{ partial "footer" .}}

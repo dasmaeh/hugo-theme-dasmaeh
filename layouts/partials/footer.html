@@ -1,0 +1,95 @@
+<!-- Footer menu -->
+<div class="is-wrapper is-footer-menu">
+
+  <div class="is-container-medium is-navbar-container">
+    <div class="is-brand">
+      {{ .Site.Params.Copyright | safeHTML }}
+    </div>
+    <div class="is-navbar is-push-right">
+      <nav>
+        <ul>
+          <li><a href="{{ .Site.Params.about }}">about</a></li>
+          <li><a href="{{ .Site.Params.privacy }}">privacy</a></li>
+          <li></li>
+          {{ if .Site.Params.social.rss }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.rss }}" target="_blank"><span class="iconify"
+                data-icon="mdi-rss"></span></a></li>
+          {{ end }}
+          {{ if .Site.Params.social.mail }}
+          <li class="follow-me"><a href="mailto:{{ .Site.Params.social.mail }}" target="_blank"><span class="iconify"
+                data-icon="mdi-mail"></span></a></li>
+          {{ end }}
+          {{ if .Site.Params.social.mastodon }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.mastodon }}" target="_blank"><span class="iconify"
+                data-icon="mdi-mastodon"></span></a></li>
+          {{ end }}
+          {{ if .Site.Params.social.reddit }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.reddit }}" target="_blank"><span class="iconify"
+                data-icon="mdi-reddit"></span></a></li>
+          {{ end }}
+          {{ if .Site.Params.social.twitter }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.twitter }}" target="_blank"><span class="iconify"
+                data-icon="mdi-twitter"></span></a></li>
+          {{ end }}
+          {{ if .Site.Params.social.facebook }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.facebook }}" target="_blank"><span class="iconify"
+                data-icon="mdi-facebook"></span></a></li>
+          {{ end }}
+          {{ if .Site.Params.social.instagram }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.instagram }}" target="_blank"><span class="iconify"
+                data-icon="mdi-instagram"></span></a></li>
+          {{ end }}
+          {{ if .Site.Params.social.diaspora }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.diaspora }}" target="_blank">
+              <svg class="iconify" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="diaspora"
+                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 462 512">
+                <path fill="currentColor"
+                  d="M226.6 354.7c-1.4 0-88 119.9-88.7 119.9-.7 0-86.6-60.5-86.9-61.2-.3-.8 86.6-125.7 86.6-127.4 0-2.2-129.6-44-137.6-47.1-1.3-.5 31.4-101.8 31.7-102.1.6-.7 144.4 47 145.5 47 .4 0 .9-.6 1-1.3.4-2 1-148.6 1.7-149.6.8-1.2 104.5-.7 105.1-.3 1.5 1 3.5 156.1 6.1 156.1 1.4 0 138.7-47 139.3-46.3.8.9 31.9 102.2 31.5 102.6-.9.9-140.2 47.1-140.6 48.8-.3 1.4 82.8 122.1 82.5 122.9-.2.7-85.5 63.5-86.3 63.5-1-.2-89-125.5-90.9-125.5z">
+                </path>
+              </svg>
+            </a></li>
+          {{ end }}
+          {{ if .Site.Params.social.github }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.github }}" target="_blank"><span class="iconify"
+                data-icon="mdi-github-box"></span></a></li>
+          {{ end }}
+          {{ if .Site.Params.social.gitlab }}
+          <li class="follow-me"><a href="{{ .Site.Params.social.gitlab }}" target="_blank"><span class="iconify"
+                data-icon="mdi-gitlab"></span></a></li>
+          {{ end }}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- cdnjs.cloudflare hashes generated at: https://www.srihash.org/ -->
+
+<!-- Load scripts for search (only on search page(s)) -->
+{{ if .Params.search }}
+{{ partial "footer_search" }}
+{{ end }}
+
+<!-- Load PhotoSwipe for figures and galleries if enabled -->
+{{ if .Params.photoswipe }}
+{{ partial "footer_photoswipe" }}
+{{ end }}
+
+<!-- iconify to load material design icons -->
+{{ partial "footer_iconify" }}
+
+<!-- Render LaTeX in mathmode using KaTeX -->
+{{ partial "footer_katex" }}
+
+<!-- Kube JS (optional if you are using Kube CSS only) -->
+<script src="/kube/js/kube.min.js"></script>
+<script>
+  $K.init({
+    observer: true
+  });
+</script>
+
+</body>
+
+</html>

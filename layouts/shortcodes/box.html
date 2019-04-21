@@ -1,0 +1,6 @@
+<div class="is-box {{ with .Get "class"}}{{.}}{{ end }}">
+{{ if .Get "icon" }}
+  <span class="iconify" data-icon="{{ .Get "icon" }}" ></span>
+{{ end }}
+{{ .Inner | markdownify }}
+</div>

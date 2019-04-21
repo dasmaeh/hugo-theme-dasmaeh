@@ -1,0 +1,23 @@
+<div class="is-container">
+<nav class="pager">
+
+    {{ if .Paginator.HasPrev }}
+        <a href="{{ .Paginator.Prev.URL }}" class="is-prev"></a>
+    {{ else }}
+        <a class="is-prev is-disabled"></a>
+    {{ end }}
+
+    <!-- <span class="is-current">{{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</span> -->
+    {{ range .Paginator.Pagers }}
+        <a href="{{ .URL }}" class="{{ if eq . $.Paginator }} is-current {{ end }}">{{ .PageNumber }}</a>
+    {{ end }}
+
+
+    {{ if .Paginator.HasNext }}
+        <a href="{{ .Paginator.Next.URL }}" class="is-next"></a>
+    {{ else }}
+        <a class="is-next is-disabled"></a>
+    {{ end }}
+    
+</nav>
+</div>

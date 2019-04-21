@@ -1,0 +1,41 @@
+{{ partial "header" .}}
+
+{{ partial "navbar" .}}
+
+<div class="is-wrapper is-stack-40">
+    <div class="is-container is-container-medium is-center">
+        <div class="is-content is-stack-40">
+            <div class="is-stack-40">
+                <a name="top"></a>
+                <h1>{{ .Title }}</h1>
+
+                <section>
+                    {{ partial "toplink" }}
+                    {{ partial "searchform"}}
+
+                    <div id="search-results">
+                        <h3 class="is-stack-20">Matching pages:</h3>
+                    </div>
+
+                </section>
+                <!-- this template is sucked in by search.js and appended to the search-results div above. So editing here will adjust style -->
+                <script id="search-result-template" type="text/x-js-template">
+                    <article id="summary-${key}" class="is-stack-40">
+                        <a href="${link}">
+                            <h2 class="is-stack-8">${title}</h2>
+                        </a>
+                        <div class="summary">${snippet}<br /><a href="${link}">Read More…</a></div>
+                        <footer class="is-border-top">
+                            ${ isset categories }<div style="float:left;"><span class="iconify" data-icon="mdi-folder"></span>${categories}&nbsp;</div>${ end }
+                            ${ isset tags }<i class="iconify" data-icon="mdi-tag-multiple"></i>${ tags }${ end }
+                        </footer>
+                    </article>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{ partial "footer" }}

@@ -1,0 +1,468 @@
+// TODO: Split into multiple files for a better overview!
+
+// main.scss
+@import "vars";
+@import "custom-vars.scss";
+@import "mixins";
+@import "photoswipe-custom.scss";
+@import "share-bar";
+
+/* Fonts */
+@font-face {
+  font-family: Roboto;
+  src:url(/fonts/roboto/Roboto-Light.ttf);
+}
+@font-face {
+  font-family: Roboto;
+  src:url(/fonts/roboto/Roboto-Regular.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family: Roboto;
+  src:url(/fonts/roboto/Roboto-Medium.ttf);
+  font-weight: bold;
+}
+@font-face {
+  font-family: Roboto;
+  src:url(/fonts/roboto/Roboto-LightItalic.ttf);
+  font-style: italic;
+}
+
+@font-face {
+  font-family: FiraSans;
+  src:url(/fonts/fira_sans/FiraSans-Regular.ttf);
+}
+@font-face {
+  font-family: FiraSans;
+  src:url(/fonts/fira_sans/FiraSans-SemiBold.ttf);
+  font-weight: bold;
+}
+
+body{
+  font-family: Roboto;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: FiraSans;
+}
+//h1::after{
+//  content:'<a href="#top">up</a>';
+//}
+kbd{
+  margin: 0 4px;
+}
+ul.task-list{
+  list-style: none;
+}
+dd{
+  margin-left:24px;
+}
+table, thead, tbody{
+  max-width: $width-medium;
+}
+thead{
+  background: rgba($color-black, 0.07);
+}
+th, td{
+  padding:8px;
+}
+th:first-child,
+td:first-child{
+  padding-left: 8px;
+}
+th:last-child,
+td:last-child{
+  padding-right: 8px;
+}
+th[align="center"]{
+  text-align: center;
+}
+th[align="right"]{
+  text-align: right;
+}
+
+.is-content{
+  overflow:hidden;
+}
+
+// Additional layout classes
+.is-wrapper{
+    padding: 0 20px;
+}
+
+.is-container-large, .is-container-medium, .is-container-small {
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.is-width-small,
+.is-container-small {
+ max-width:$width-small;
+}
+.is-width-medium,
+.is-container-medium {
+ max-width:$width-medium;
+}
+.is-width-large,
+.is-container-large {
+ max-width:$width-large;
+}
+
+/* floats, ie for figures */
+.is-float-left{
+  float:left;
+  margin-right:24px;
+}
+.is-float-right{
+  float:right;
+  margin-left:24px;
+}
+
+
+
+// Primary navigation menu
+.is-brand .is-logo a{
+  font-family: FiraSans;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.75em;
+}
+.navigation .is-primary-menu li{
+  font-weight: 300;
+  text-transform: lowercase;
+  a{
+    /*color: $color-text;*/
+    text-decoration: none;
+    padding-bottom:4px;
+    /*padding:4px 0;*/
+  }
+}
+
+// Secondary navigation menu
+.navigation .secondary-menu input{
+  height: 1.666667em;
+}
+// TODO: DELETE!
+.navigation .secondary-menu li{
+  font-weight: 300;
+  margin: 0 8px;
+  text-transform: lowercase;
+  a{
+    /*padding:4px 0;*/
+    text-decoration: none;
+    color: $color-text-secondary;
+  }
+  a:hover{
+      color: $color-link-hover;
+      text-decoration: underline;
+  }
+}
+
+// Local Menu
+.navigation.is-local{
+  font-weight: 300;
+  .is-brand{
+      font-weight: bold;
+  }
+  a{
+    text-decoration: none;
+    color: $color-text;
+  }
+  a:hover{
+    color: $color-link-hover;
+    text-decoration: underline;
+  }
+}
+/* TODO: Fix margin for smaller screen sizes */
+/* TODO: design! */
+article aside, .is-aside{
+  position: absolute;
+  z-index: 200;
+  left: 0;
+  width: 240px;
+  margin-left: calc( (100% - 720px) / 2 + 760px );
+  border-left: solid 4px rgba($color-black, .3);
+  background: $alert-background;
+  padding: 8px 4px 16px 8px;
+  h2{
+    font-size: 1.25em;
+  }
+  ul li ul{
+    margin: 0 0 0 16px;
+    list-style: disc;
+  }
+  p:last-child{
+    margin-bottom: 0;
+  }
+}
+.is-toc{
+  z-index: 201;
+}
+.is-toplink{
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  border: none;
+  background: none;
+  a svg{
+    color: lightgray;
+    height:40px;
+    width: 40px;
+    background: white;
+  }
+}
+@include breakpoint($max: 1024px) {
+  .is-aside, article aside{
+    position: relative!important;
+    z-index: 0;
+    margin:0!important;
+    display: inline-block;
+    width: 100%;
+    border: solid 1px rgba($color-black, .3);
+    border-left-width: 4px;
+    margin-bottom: 16px!important;
+    padding-bottom: 4px;
+  }
+}
+
+/* Boxes */
+div.is-box{
+  font-size: .9375em;
+  font-weight: 500;
+  background: #fff;
+  padding: 16px 32px 16px 16px;
+  box-shadow: none;
+  position: relative;
+  margin-bottom: 16px;
+}
+div.is-box,
+aside.is-box{
+  padding: 8px;
+  border-radius: 0;
+  border-width: 1px;
+  border-style: solid;
+  border-left-width: 4px;
+  border-color: rgba($color-black, .3);
+  background-color: rgba($color-black, .02);
+}
+article aside,
+div.is-box{
+  svg{
+    width:24px;
+    margin-right: 4px;
+  }
+}
+.is-box.is-error{
+  color: $color-error;
+  border-color: rgba($color-error, .3);
+  background-color: rgba($color-error, .07);
+  svg{
+    color: $color-error;
+  }
+}
+.is-box.is-warning{
+  color: $color-warning;
+  border-color: rgba($color-warning, .5);
+  background-color: rgba($color-warning, .07);
+  svg{
+    color: $color-warning;
+  }
+}
+.is-box.is-success{
+  color: $color-success;
+  border-color: rgba($color-success, .3);
+  background-color: rgba($color-success, .07);
+  svg{
+    color: $color-success;
+  }
+}
+aside.is-focus,
+.is-box.is-focus{
+  color: $color-focus;
+  border-color: rgba($color-focus, .3);
+  background-color: rgba($color-focus, .07);
+  svg{
+    color: $color-focus!important;
+  }
+}
+
+/* Code highlighting (no table)*/
+.highlight{
+  div{
+    border-radius: 4px;
+  }
+  pre{
+    padding: 8px 0px 8px 0px;
+    padding-left: 12px!important;
+    code{
+      margin: 0 16px;
+      margin-left: 0px!important;
+      border-radius: 0!important;
+    }
+  }
+}
+
+
+/* code highlighting (table) */
+.highlight{
+  table{
+    padding: 1rem;
+    border: 1px solid rgba(17,17,19,.08)!important;
+    border-radius: 4px;
+    pre{
+      border:none;
+      margin-left: 0!important;
+      padding-left: 0!important;
+      padding-top: 5px!important;
+      code{
+        margin: 0;
+      }
+    }
+    tr td:first-child pre{
+      border-radius: 0;
+      code {
+        span{
+          min-width: 24px;
+          display: block;
+          text-align: right;
+          /*color: #d0d0d0 !important;*/
+          padding: 0px 16px 0px 8px!important;
+          margin: 0px !important;
+          span{
+            padding: 0 !important;
+          }
+        }
+      }
+    }
+    tr td:nth-child(2){
+      width: 100%!important;
+    }
+  }
+}
+
+/* ICONS */
+svg.iconify{
+  float: left;
+  height: 24px;
+  color: $color-text-secondary;
+}
+/* Article layout */
+article header, article footer{
+  ul{
+    margin: 4px 0 4px 20px;
+    list-style: none;
+    li{
+      float:left;
+      a{
+        color: $color-text-secondary;
+      }
+    }
+    li::after{
+      content: ",";
+      margin-right: 4px;
+    }
+    li:last-child::after{
+        content: "";
+    }
+  }
+  ul.tags{
+    a::before{
+        content: "#";
+    }
+  }
+}
+
+/* Share bar */
+article footer{
+  h3{
+    margin-top:8px;
+  }
+}
+
+/* Post navigation */
+.is-post-previous, .is-post-next{
+  /*display: block;*/
+  padding: 8px 0;
+  /*width: calc( 50% - 12px );
+  min-width: calc( 50% - 12px );*/
+}
+
+.is-post-previous{
+  /*margin-right: 12px;*/
+  padding-left:8px;
+  border-left-width: 4px;
+  border-left-color: lightgray;
+}
+.is-post-previous:hover{
+  border-left-color: $color-link-hover;
+}
+.is-post-next{
+  text-align: right;
+  /*margin-left: 12px;*/
+  padding-right: 8px;
+  border-right-width: 4px;
+  border-right-color: lightgray;
+}
+.is-post-next:hover{
+  border-right-color: $color-link-hover;
+}
+
+/* Related posts */
+
+.is-related{
+  .is-row > .is-col.is-33{
+    /*max-width: 33.333%;*/
+    max-width:216px; /* not really nice, but necessary to prevent the box from expanding over 1/3*/
+  }
+  a{
+    width: 100%;
+    display: block;
+  }
+  img{
+    width: 100%;
+  }
+  .is-post-title{
+    margin: 8px;
+    font-family: FiraSans;
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+  time{
+    margin: 0 8px;
+  }
+}
+
+/* Footer menu */
+.is-footer-menu{
+  border-top: solid 4px lightgray;
+  h3{
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+  img{
+    float:left;
+    border-radius: 4px;
+    border:solid 1px lightgray;
+    margin: 0 12px 0 0;
+  }
+  .follow-bar{
+    margin-top: 4px;
+    a{
+
+      svg{
+        width:24px;
+        margin-right: 4px;
+      }
+    }
+  }
+  li.follow-me{
+    margin-left: 8px;
+    a{
+      svg{
+        width:20px;
+        margin-right: 4px;
+      }
+    }
+  }
+
+}
+

@@ -1,0 +1,46 @@
+<h3>Share</h3>
+
+<!-- share bar -->
+<div class="share-bar">
+    <!-- LINKS: https://simplesharebuttons.com/html-share-buttons/ -->
+    <!-- TODO: Only show a selection of schare links based on option! -->
+    <!-- TODO: Add more services like Pinterest, Instagram, 500px, ... -->
+    <!-- Permalink -->
+    <a class="is-link" title="Permalink of this article" href="{{ .Permalink }}">
+        <span class="iconify" data-icon="mdi-link-variant"></span>
+    </a>
+    <!-- Email -->
+    <a class="is-mail" title="Share this article by email"
+        href="mailto:?Subject={{ .Title }}&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{ .Permalink }}">
+        <span class="iconify" data-icon="mdi-email"></span>
+    </a>
+    <!-- Facebook -->
+    <a class="is-facebook" title="Share this article via Facebook"
+        href="http://www.facebook.com/sharer.php?u={{ .Permalink }}" target="_blank">
+        <span class="iconify" data-icon="mdi-facebook"></span>
+    </a>
+    <!-- Twitter -->
+    <a class="is-twitter" title="Share this article via Twitter"
+        href="https://twitter.com/share?url={{ .Permalink }}&amp;text={{ .Title }}" target="_blank">
+        <span class="iconify" data-icon="mdi-twitter"></span>
+    </a>
+    <!-- Diaspora -->
+    <a class="is-diaspora" title="Share this article via Diaspora"
+        href="http://sharetodiaspora.github.io/?title={{ .Title }}&url={{ .Permalink }}" target="_blank">
+        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="diaspora" role="img"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 462 512" class="svg-inline--fa fa-diaspora fa-w-15 fa-3x">
+            <path fill="currentColor"
+                d="M226.6 354.7c-1.4 0-88 119.9-88.7 119.9-.7 0-86.6-60.5-86.9-61.2-.3-.8 86.6-125.7 86.6-127.4 0-2.2-129.6-44-137.6-47.1-1.3-.5 31.4-101.8 31.7-102.1.6-.7 144.4 47 145.5 47 .4 0 .9-.6 1-1.3.4-2 1-148.6 1.7-149.6.8-1.2 104.5-.7 105.1-.3 1.5 1 3.5 156.1 6.1 156.1 1.4 0 138.7-47 139.3-46.3.8.9 31.9 102.2 31.5 102.6-.9.9-140.2 47.1-140.6 48.8-.3 1.4 82.8 122.1 82.5 122.9-.2.7-85.5 63.5-86.3 63.5-1-.2-89-125.5-90.9-125.5z"
+                class=""></path>
+        </svg>
+    </a>
+    <!-- Reddit -->
+    <a class="is-reddit" title="Share this article via Reddit"
+        href="http://reddit.com/submit?url={{ .Permalink }}&amp;title={{ .Title}}" target="_blank">
+        <span class="iconify" data-icon="mdi-reddit"></span>
+    </a>
+    <!-- Print -->
+    <a class="is-print" title="Print this article" href="javascript:;" onclick="window.print()">
+        <span class="iconify" data-icon="mdi-printer"></span>
+    </a>
+</div>

@@ -1,0 +1,11 @@
+<!-- Title image -->
+{{ $img := (.Resources.ByType "image").GetMatch "**featured*" }}
+{{ with $img }}
+   {{ $big := .Resize "1440x" }}
+   {{ $small := $big.Resize "720x" }}
+    <img srcset="{{ $small.RelPermalink }} 1x, {{ $big.RelPermalink }} 2x" alt="{{ $img.Title }}" width="{{ $big.Width }}" class="is-stack-16">
+{{ else }}
+  {{ with .Params.featured_image }}
+    <img src="{{ $.Site.BaseURL }}{{ . }}" alt="Featured Image" class="is-stack-16">
+  {{ end }}
+{{ end }}

@@ -1,0 +1,15 @@
+<div>
+    {{ if isset .Params "categories" }}
+      {{ $categoriesLen := len .Params.categories }}
+      {{ if gt $categoriesLen 0 }}
+        <span class="iconify" data-icon="mdi-folder"></span>
+        <ul class="categories">
+          {{ range $k, $v := .Params.categories }}
+            {{ $url := printf "categories/%s" (. | urlize | lower) }}
+            <li><a class="article-category-link" href="{{ $url | absLangURL }}">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    {{ end }}
+    <!--&nbsp;-->
+    </div>

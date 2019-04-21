@@ -1,0 +1,27 @@
+{{ partial "header" . }}
+
+{{ partial "navbar" . }}
+
+<!-- main -->
+<div class="is-wrapper is-stack-40">
+    <div class="is-container is-container-medium is-center">
+        <div class="is-content is-stack-40">
+            <div class="is-stack-40">
+                <a name="top"></a>
+                <h1>{{ .Title }}</h1>
+
+                {{ partial "toplink" }}
+                {{ .Content }}
+            </div>
+            <!-- TODO: Maybe add other post types here -->
+            {{ $paginator := .Paginate (where .Pages "Type" "post") }}
+            {{ range .Paginator.Pages }}
+                {{ .Render "content-list" }}
+            {{ end }}
+
+            {{ partial "pagination" . }}
+        </div>
+    </div>
+</div>
+
+{{ partial "footer" . }}

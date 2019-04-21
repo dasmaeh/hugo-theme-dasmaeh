@@ -1,0 +1,15 @@
+<article class="is-stack-40">
+    <a href="{{ .RelPermalink }}">
+        <h2 class="is-stack-8">{{ .Title }}</h2>
+    </a>
+    <div style="float:left; margin-right:20px;">{{ .Render "thumbnail" }}</div>
+    {{ .Render "meta_time" }}
+    <div class="summary" style="min-height:150px">
+        {{ .Summary }}
+        <br /><a href="{{ .RelPermalink }}">Read More…</a>
+    </div>
+    <footer class="is-border-top">
+        {{ .Render "meta_categories" }}
+        {{ .Render "meta_tags" }}
+    </footer>
+</article>

@@ -1,0 +1,33 @@
+<!-- Main menu -->
+<div class="navigation is-global is-wrapper is-border-bottom">
+  <div class="is-navbar-container is-container-medium is-row">
+    <div class="is-brand">
+      <div class="is-logo"><a href="{{ .Site.BaseURL }}" >{{ .Site.Title }}</a></div>
+      <a href="#" class="nav-toggle is-push-right-mobile is-shown-mobile icon-kube-menu"
+                data-kube="toggle"
+                data-target="#navbar-main"></a>
+    </div>
+    <div id="navbar-main" class="is-navbar is-push-right is-hidden-mobile">
+      <nav>
+          <ul class="is-primary-menu">
+              {{ $currentPage := . }}
+              {{ range .Site.Menus.main }}
+                <li {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}is-active{{end}}>
+                    <a href="{{ .URL }}">
+                        {{ .Pre }}
+                        <span>{{ .Name }}</span>
+                    </a>
+                </li>
+              {{ end }}
+            </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="navigation is-global is-wrapper">
+    <div class="is-container-medium is-row">
+      {{ .Site.Params.Description }}
+    </div>
+</div>
+<!-- spacer -->
+<div class="is-wrapper is-stack-40"></div>

@@ -1,0 +1,6 @@
+<aside class="{{ if .Get "border" }} is-box{{ end }} {{ with .Get "class"}}{{.}}{{ end }}">
+{{ if .Get "icon" }}
+  <span class="iconify" data-icon="{{ .Get "icon" }}"></span>
+{{ end }}
+{{ .Inner | markdownify }}
+</aside>

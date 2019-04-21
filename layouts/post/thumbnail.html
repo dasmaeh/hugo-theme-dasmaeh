@@ -1,0 +1,11 @@
+<!-- Title image -->
+{{ $img := (.Resources.ByType "image").GetMatch "**thumbnail*" }}
+{{ with $img }}
+   {{ $big := .Resize "440x" }}
+   {{ $small := $big.Resize "220x" }}
+    <img srcset="{{ $small.RelPermalink }} 1x, {{ $big.RelPermalink }} 2x" alt="{{ $img.Title }}" width="{{ $big.Width }}" >
+{{ else }}
+  {{ with .Params.thumbnail }}
+    <img src="{{ $.Site.BaseURL }}{{ . }}" alt="Post thumbnail image">
+  {{ end }}
+{{ end }}

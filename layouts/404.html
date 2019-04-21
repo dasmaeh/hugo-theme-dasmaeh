@@ -1,0 +1,34 @@
+{{ partial "header" .}}
+
+{{ partial "navbar" .}}
+
+<!-- main -->
+<div class="is-wrapper is-stack-40">
+  <div class="is-container is-container-medium is-center">
+    <article class="is-content is-stack-40 is-col is-100">
+
+      <header class="is-stack-24">
+
+        <!-- TODO: Add a nice image for 404 here-->
+        <!--{{ .Render "featured" }}-->
+
+        <a name="top"></a>
+        <h1 class="is-stack-16">Whooops ...</h1>
+      </header>
+
+      <p>...looks like somethings gone wrong here!</p>
+      <p>The page you've been looking for doesn't exist. Maybe the link was bad, the page was moved or ...</p>
+      <p>Try a search:</p>
+      
+      {{ partial "searchform" }}
+    
+      <p>And feel free to <a href="mailto:{{ .Site.Params.social.mail }}" >tell me</a> about the problem.</p>
+    </article>
+  </div>
+
+  {{ .Render "nav_prevnext" }}
+  {{ .Render "nav_related" }}
+
+</div>
+
+{{ partial "footer" .}}
