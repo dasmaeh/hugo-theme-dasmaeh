@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    
+    {{ .Hugo.Generator }}
+    
     {{/* Alternative Output (RSS, ...) */}}
     {{ range .AlternativeOutputFormats -}}
       {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
@@ -37,3 +40,11 @@
 </head>
 
 <body>
+    {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
+    <div class="is-wrapper is-stack-40">
+    {{ block "main" . }}{{ end }}
+    </div>
+    {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
+    {{ block "scripts" . }}{{ partial "site-scripts.html" }}{{ end }}
+</body>
+</html>

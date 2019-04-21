@@ -1,9 +1,4 @@
-{{ partial "header" . }}
-
-{{ partial "navbar" . }}
-
-<!-- main -->
-<div class="is-wrapper is-stack-40">
+{{ define "main" }}
     <div class="is-container is-container-medium is-center">
         <div class="is-content is-stack-40">
             <div class="is-stack-40">
@@ -22,6 +17,4 @@
             {{ partial "pagination" . }}
         </div>
     </div>
-</div>
-
-{{ partial "footer" . }}
+{{ end }}

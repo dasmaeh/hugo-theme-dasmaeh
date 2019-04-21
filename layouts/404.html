@@ -1,9 +1,4 @@
-{{ partial "header" .}}
-
-{{ partial "navbar" .}}
-
-<!-- main -->
-<div class="is-wrapper is-stack-40">
+ {{ define "main" }}
   <div class="is-container is-container-medium is-center">
     <article class="is-content is-stack-40 is-col is-100">
 
@@ -29,6 +24,4 @@
   {{ .Render "nav_prevnext" }}
   {{ .Render "nav_related" }}
 
-</div>
-
-{{ partial "footer" .}}
+{{ end }}
