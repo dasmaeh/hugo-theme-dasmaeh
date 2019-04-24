@@ -1,4 +1,6 @@
-summaryInclude=200;
+/* dynamic search inspired by: https://gist.github.com/fooqri/a0d94853f658fb4a4bfee2ac00ab6177 */
+
+summaryInclude=60;
 var fuseOptions = {
   shouldSort: true,
   includeMatches: true,
@@ -19,15 +21,29 @@ var fuseOptions = {
 
 var searchQuery = param("s");
 if(searchQuery){
-  $("#search-query").val(searchQuery);
-  executeSearch(searchQuery);
+    // searchQuery = $("#search-query").val(searchQuery);
+  var inputBox = document.getElementById('search-query');
+  inputBox.value = searchQuery || "";
+  executeSearch(searchQuery, false);
 }else {
-  $('#search-results').append("<p>Please enter a word or phrase above</p>");
+  $('#search-results').append("<p class=\"search-results-empty\">Please enter a word or phrase above, or see <a href=\"/tags/\">all tags</a>.</p>"); 
 }
 
 
+function executeInlineSearch(){
+    $(".search-results-empty").remove();
+    $(".search-results-summary").remove();
+ //   $('#search-results')
+    var query = document.getElementById("search-query").value;
+    
+    if(query){
+        executeSearch(query, true);
+    }else {
+        $('#search-results').append("<p class=\"search-results-empty\">Please enter a word or phrase above, or see <a href=\"/tags/\">all tags</a>.</p>"); 
+    }
+}
 
-function executeSearch(searchQuery){
+function executeSearch(searchQuery, clear_list){
   $.getJSON( "/index.json", function( data ) {
     var pages = data;
     var fuse = new Fuse(pages, fuseOptions);
@@ -36,12 +52,16 @@ function executeSearch(searchQuery){
     if(result.length > 0){
       populateResults(result);
     }else{
-      $('#search-results').append("<p>No matches found</p>");
+        if (clear_list) {
+          $(".search-results-empty").remove();
+        }
+        $('#search-results').append("<p class=\"search-results-empty\">No matches found</p>");
     }
   });
 }
 
 function populateResults(result){
+  searchQuery = document.getElementById("search-query").value;
   $.each(result,function(key,value){
     var contents= value.item.contents;
     var snippet = "";
@@ -65,10 +85,17 @@ function populateResults(result){
     if(snippet.length<1){
       snippet += contents.substring(0,summaryInclude*2);
     }
-    //pull template from hugo templarte definition
-    var templateDefinition = $('#search-result-template').html();
-    //replace values
-    var output = render(templateDefinition,{key:key,title:value.item.title,link:value.item.permalink,tags:value.item.tags,categories:value.item.categories,snippet:snippet});
+      //pull template from hugo templarte definition
+      var templateDefinition = $('#search-result-template').html();
+      //replace values
+      var tags = ""
+      if (value.item.tags){
+          value.item.tags.forEach(function(element) {
+              tags = tags + "<a href='/tags/"+ element +"'>" + "#" + element + "</a> " 
+          });
+      }
+      
+    var output = render(templateDefinition,{key:key,title:value.item.title,link:value.item.permalink,tags:tags,categories:value.item.categories,snippet:snippet});
     $('#search-results').append(output);
 
     $.each(snippetHighlights,function(snipkey,snipvalue){
@@ -106,6 +133,3 @@ function render(templateString, data) {
   }
   return templateString;
 }
-
-
-
