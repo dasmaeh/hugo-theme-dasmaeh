@@ -3,6 +3,6 @@
     {{ .Render "content-single" }}
   </div>
 
-  {{ .Render "nav_prevnext" }}
-  {{ .Render "nav_related" }}
+  {{ partial "helpers/nav_prevnext.html" . }}
+  {{ partial "helpers/nav_related.html" . }}
   {{ end }}
