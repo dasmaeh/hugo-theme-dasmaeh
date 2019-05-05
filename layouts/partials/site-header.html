@@ -2,7 +2,7 @@
 <div class="navigation is-global is-wrapper is-border-bottom">
   <div class="is-navbar-container is-container-medium is-row">
     <div class="is-brand">
-      <div class="is-logo"><a href="{{ .Site.BaseURL }}" >{{ .Site.Title }}</a></div>
+      {{ partial "site-logo" . }}
       <a href="#" class="nav-toggle is-push-right-mobile is-shown-mobile icon-kube-menu"
                 data-kube="toggle"
                 data-target="#navbar-main"></a>
