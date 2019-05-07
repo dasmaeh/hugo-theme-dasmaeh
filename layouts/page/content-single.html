@@ -8,7 +8,9 @@
     <a name="top"></a>
     <h1 class="is-stack-16">{{ .Title }}</h1>
 
-    {{ partial "helpers/meta_time.html" . }}
+    {{ if .Date }}
+      {{ partial "helpers/meta_time.html" . }}
+    {{ end }}
     {{ partial "helpers/meta_categories.html" . }}
     {{ partial "helpers/meta_tags.html" . }}
   </header>
