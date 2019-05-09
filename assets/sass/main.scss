@@ -431,18 +431,15 @@ article footer{
   }
 }
 
-/* Footer menu */
-.is-footer-menu{
+/* Site footer */
+.is-site-footer{
   border-top: solid 4px lightgray;
-  h3{
-    margin-top: 12px;
-    margin-bottom: 8px;
+  .is-logo{
+    font-family: 'FiraSans';
   }
-  img{
-    float:left;
-    border-radius: 4px;
-    border:solid 1px lightgray;
-    margin: 0 12px 0 0;
+  .is-brand a{
+    text-decoration: none;
+    font-family: 'FiraSans';
   }
   .follow-bar{
     margin-top: 4px;
@@ -461,6 +458,12 @@ article footer{
         width:20px;
         margin-right: 4px;
       }
+    }
+  }
+  .is-license{
+    opacity: 0.55;
+    img{
+      margin-right: 8px;
     }
   }
 

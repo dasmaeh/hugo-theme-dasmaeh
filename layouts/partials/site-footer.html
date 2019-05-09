@@ -1,16 +1,24 @@
-<!-- Footer menu -->
-<div class="is-wrapper is-footer-menu">
-
+{{/* Site footer */}}
+<div class="is-wrapper is-site-footer">
   <div class="is-container-medium is-navbar-container">
     <div class="is-brand">
-      {{ .Site.Params.Copyright | safeHTML }}
+      {{ .Site.Params.Owner | safeHTML }}
     </div>
     <div class="is-navbar is-push-right">
       <nav>
         <ul>
-          <li><a href="/{{ .Site.Params.about }}">about</a></li>
-          <li><a href="{{ .Site.Params.privacy }}">privacy</a></li>
-          <li></li>
+          <li><a href="/{{ .Site.Params.about }}">{{ i18n "about" }}</a></li>
+          <li><a href="/{{ .Site.Params.impressum }}">{{ i18n "impressum" }}</a></li>
+          <li><a href="/{{ .Site.Params.privacy }}">{{ i18n "privacy" }}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  {{/* Follow me bar */}}
+  <div class="is-container-medium is-navbar-container is-stack-30">
+    <div class="is-navbar is-push-right">
+      <nav class="is-stack-20">
+        <ul>
           {{ if .Site.Params.social.rss }}
           <li class="follow-me"><a href="{{ .Site.Params.social.rss }}" target="_blank"><span class="iconify"
                 data-icon="mdi-rss"></span></a></li>
@@ -59,6 +67,12 @@
           {{ end }}
         </ul>
       </nav>
+    </div>
+  </div>
+  {{/* License / copyright line */}}
+  <div class="is-container-medium">
+    <div class="is-license">
+      {{ .Site.Params.copyright | safeHTML }}
     </div>
   </div>
 </div>
