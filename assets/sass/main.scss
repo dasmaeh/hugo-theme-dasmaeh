@@ -38,6 +38,21 @@
   font-weight: bold;
 }
 
+/* accent colors - not intended for public use */
+.is-nerd{
+  color: $color-nerd;
+}
+.is-foodie{
+  color: $color-foodie;
+}
+.is-photo{
+  color: $color-photo;
+}
+.is-teacher{
+  color: $color-teacher;
+}
+
+/* general layout */
 body{
   font-family: Roboto;
 }
