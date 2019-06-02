@@ -43,7 +43,7 @@
     <div class="page ">
       <header class="header">{{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}</header>
       <main class="main is-container is-width-large is-center">
-          <div class="main-sidebar is-hidden-mobile">
+          <div class="main-sidebar">
             ...SIDEBAR...
             <form action="{{ "search" | absURL }}" onkeyup="executeInlineSearch()">
                 <input id="search-query" name="s" class="is-search"/>
@@ -60,7 +60,7 @@
           </div>
       </main>
       <footer class="footer">
-        {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
+        {{ block "footer" . }}{{ partial "site-footer.html" . }}{{ end }}
         {{ block "scripts" . }}{{ partial "site-scripts.html" }}{{ end }}
       </footer>
   </div>
