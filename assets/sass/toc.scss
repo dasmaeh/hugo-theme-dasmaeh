@@ -1,0 +1,18 @@
+.is-toc{
+    font-size:.75em;
+    line-height: 1.25em;
+    margin-bottom: 1.5em;
+    /*background: #eee;*/
+    &.is-fixed{
+      top:50px;
+      padding:6px;
+      border-left: #ccc solid 2px;
+      background: #fff;
+      width:240px;
+      left: calc( (100% - 720px) / 2 + 620px );
+      @include breakpoint($max: 1000px) {
+        display: none;
+      }
+    }
+  
+  }

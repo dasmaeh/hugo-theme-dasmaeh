@@ -1,5 +1,5 @@
 {{ if and (gt .WordCount 400 ) (.Params.toc) }}
-  <aside data-kube="sticky" class="is-toc is-aside">
+  <aside data-kube="sticky" data-offset="40" class="is-toc is-aside">
     <h2>Table of Contents</h2>
     {{ .TableOfContents }}
   </aside>
