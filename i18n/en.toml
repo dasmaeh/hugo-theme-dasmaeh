@@ -1,4 +1,12 @@
 
+# Prev/next navigation
+[previous]
+other = "previous"
+
+[next]
+other = "next"
+
+
 # site footer
 [about]
 other = "about"

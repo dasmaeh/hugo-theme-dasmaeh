@@ -2,7 +2,7 @@
 <div class="is-container-medium is-center is-stack-40">
 <nav class="pager is-stacked is-border-bottom is-border-top">
     {{ if .PrevInSection }}
-        <a href="{{ .PrevInSection.RelPermalink }}" class="is-prev is-post-previous" data-label="Previous">{{ .PrevInSection.Title }}</a>        
+        <a href="{{ .PrevInSection.RelPermalink }}" class="is-prev is-post-previous" data-label="{{ i18n "previous" }}">{{ .PrevInSection.Title }}</a>        
     {{ end }}
     {{ if .NextInSection }}
         <a href="{{ .NextInSection.RelPermalink }}" class="is-next is-post-next" data-label="Next">{{ .NextInSection.Title }}</a>        

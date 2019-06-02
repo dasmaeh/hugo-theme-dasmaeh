@@ -1,4 +1,12 @@
 
+# Prev/next navigation
+[previous]
+other = "zurück"
+
+[next]
+other = "vor"
+
+
 # site footer
 [about]
 other = "Über mich"
