@@ -6,7 +6,7 @@
 @import "mixins";
 @import "fonts";
 @import "header";
-
+@import "footer";
 @import "toc";
 @import "toplink";
 @import "photoswipe-custom.scss";
@@ -35,7 +35,7 @@ body{
 .main-content {
   @include make-content;
   order: 1;
-  border: blue solid 1px;
+  /*border: blue solid 1px;*/
 }
 
 /* accent colors - not intended for public use */
@@ -377,42 +377,4 @@ article footer{
   }
 }
 
-/* Site footer */
-.is-site-footer{
-  border-top: solid 4px lightgray;
-  .is-logo{
-    font-family: 'FiraSans';
-  }
-  .is-brand a{
-    text-decoration: none;
-    font-family: 'FiraSans';
-    color: $color-text;
-  }
-  .follow-bar{
-    margin-top: 4px;
-    a{
-
-      svg{
-        width:24px;
-        margin-right: 4px;
-      }
-    }
-  }
-  li.follow-me{
-    margin-left: 8px;
-    a{
-      svg{
-        width:20px;
-        margin-right: 4px;
-      }
-    }
-  }
-  .is-license{
-    opacity: 0.55;
-    img{
-      margin-right: 8px;
-    }
-  }
-
-}
 
