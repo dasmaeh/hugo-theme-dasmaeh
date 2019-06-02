@@ -6,25 +6,35 @@
 @import "mixins";
 @import "fonts";
 @import "header";
+
+@import "toplink";
 @import "photoswipe-custom.scss";
 @import "share-bar";
 
 
 /* LAYOUT*/
+body{
+  @include for-mobile{
+    padding:6px;
+    margin:0;
+  }
+}
+
 .main-sidebar {
   @include make-sidebar(240px);
   order: 2;
-  margin-left: 16px;
+  margin-left: 32px;
   border: solid 1px red;
 
   @include for-mobile {
-      order: 1;
+      order: 2;
       margin-left: 0;
   }
 }
 .main-content {
   @include make-content;
   order: 1;
+  border: blue solid 1px;
 }
 
 /* accent colors - not intended for public use */
@@ -121,7 +131,7 @@ th[align="right"]{
 
 /* TODO: Fix margin for smaller screen sizes */
 /* TODO: design! */
-article aside, .is-aside{
+/*article aside, .is-aside{
   position: absolute;
   z-index: 200;
   left: 0;
@@ -143,20 +153,8 @@ article aside, .is-aside{
 }
 .is-toc{
   z-index: 201;
-}
-.is-toplink{
-  position: fixed;
-  bottom: 0;
-  z-index: 100;
-  border: none;
-  background: none;
-  a svg{
-    color: lightgray;
-    height:40px;
-    width: 40px;
-    background: white;
-  }
-}
+}*/
+/*
 @include breakpoint($max: 1024px) {
   .is-aside, article aside{
     position: relative!important;
@@ -170,7 +168,7 @@ article aside, .is-aside{
     padding-bottom: 4px;
   }
 }
-
+*/
 /* Boxes */
 div.is-box{
   font-size: .9375em;
