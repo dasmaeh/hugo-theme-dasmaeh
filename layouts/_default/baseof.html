@@ -40,11 +40,29 @@
 </head>
 
 <body>
-    {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
-    <div class="is-wrapper is-stack-40">
-    {{ block "main" . }}{{ end }}
-    </div>
-    {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
-    {{ block "scripts" . }}{{ partial "site-scripts.html" }}{{ end }}
+    <div class="page ">
+      <header class="header">{{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}</header>
+      <main class="main is-container is-width-large is-center">
+          <div class="main-sidebar is-hidden-mobile">
+            ...SIDEBAR...
+            <form action="{{ "search" | absURL }}" onkeyup="executeInlineSearch()">
+                <input id="search-query" name="s" class="is-search"/>
+            </form>
+            <h2>Tags</h2>
+            <ul>
+              {{ range .Site.Taxonomies.tags }}
+                <li><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> {{ .Count }}</li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="main-content">
+              {{ block "main" . }}{{ end }}
+          </div>
+      </main>
+      <footer class="footer">
+        {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
+        {{ block "scripts" . }}{{ partial "site-scripts.html" }}{{ end }}
+      </footer>
+  </div>
 </body>
 </html>
