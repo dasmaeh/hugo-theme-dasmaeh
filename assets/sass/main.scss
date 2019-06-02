@@ -4,38 +4,27 @@
 @import "vars";
 @import "custom-vars.scss";
 @import "mixins";
+@import "fonts";
+@import "header";
 @import "photoswipe-custom.scss";
 @import "share-bar";
 
-/* Fonts */
-@font-face {
-  font-family: Roboto;
-  src:url(/fonts/roboto/Roboto-Light.ttf);
-}
-@font-face {
-  font-family: Roboto;
-  src:url(/fonts/roboto/Roboto-Regular.ttf);
-  font-weight: 300;
-}
-@font-face {
-  font-family: Roboto;
-  src:url(/fonts/roboto/Roboto-Medium.ttf);
-  font-weight: bold;
-}
-@font-face {
-  font-family: Roboto;
-  src:url(/fonts/roboto/Roboto-LightItalic.ttf);
-  font-style: italic;
-}
 
-@font-face {
-  font-family: FiraSans;
-  src:url(/fonts/fira_sans/FiraSans-Regular.ttf);
+/* LAYOUT*/
+.main-sidebar {
+  @include make-sidebar(240px);
+  order: 2;
+  margin-left: 16px;
+  border: solid 1px red;
+
+  @include for-mobile {
+      order: 1;
+      margin-left: 0;
+  }
 }
-@font-face {
-  font-family: FiraSans;
-  src:url(/fonts/fira_sans/FiraSans-SemiBold.ttf);
-  font-weight: bold;
+.main-content {
+  @include make-content;
+  order: 1;
 }
 
 /* accent colors - not intended for public use */
@@ -53,12 +42,7 @@
 }
 
 /* general layout */
-body{
-  font-family: Roboto;
-}
-h1, h2, h3, h4, h5, h6{
-  font-family: FiraSans;
-}
+
 //h1::after{
 //  content:'<a href="#top">up</a>';
 //}
@@ -134,59 +118,7 @@ th[align="right"]{
 
 
 
-// Primary navigation menu
-.is-brand .is-logo a{
-  font-family: FiraSans;
-  text-decoration: none;
-  color: #333;
-  font-size: 1.75em;
-}
-.navigation .is-primary-menu li{
-  font-weight: 300;
-  text-transform: lowercase;
-  a{
-    /*color: $color-text;*/
-    text-decoration: none;
-    padding-bottom:4px;
-    /*padding:4px 0;*/
-  }
-}
 
-// Secondary navigation menu
-.navigation .secondary-menu input{
-  height: 1.666667em;
-}
-// TODO: DELETE!
-.navigation .secondary-menu li{
-  font-weight: 300;
-  margin: 0 8px;
-  text-transform: lowercase;
-  a{
-    /*padding:4px 0;*/
-    text-decoration: none;
-    color: $color-text-secondary;
-  }
-  a:hover{
-      color: $color-link-hover;
-      text-decoration: underline;
-  }
-}
-
-// Local Menu
-.navigation.is-local{
-  font-weight: 300;
-  .is-brand{
-      font-weight: bold;
-  }
-  a{
-    text-decoration: none;
-    color: $color-text;
-  }
-  a:hover{
-    color: $color-link-hover;
-    text-decoration: underline;
-  }
-}
 /* TODO: Fix margin for smaller screen sizes */
 /* TODO: design! */
 article aside, .is-aside{
@@ -455,6 +387,7 @@ article footer{
   .is-brand a{
     text-decoration: none;
     font-family: 'FiraSans';
+    color: $color-text;
   }
   .follow-bar{
     margin-top: 4px;

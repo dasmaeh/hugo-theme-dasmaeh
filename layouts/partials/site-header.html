@@ -1,31 +1,64 @@
-<!-- Main menu -->
-<div class="navigation is-global is-wrapper is-border-bottom">
-  <div class="is-navbar-container is-container-medium is-row">
+<div data-kube="sticky" class="is-navbar-box is-border-bottom">
+    <div class="is-navbar-container is-container-large is-row" >
+
     <div class="is-brand">
-      {{ partial "site-logo" . }}
-      <a href="#" class="nav-toggle is-push-right-mobile is-shown-mobile icon-kube-menu"
+        {{ partial "site-logo" . }}
+        <a href="#" class="nav-toggle is-push-right-mobile is-shown-mobile icon-kube-menu"
                 data-kube="toggle"
                 data-target="#navbar-main"></a>
     </div>
-    <div id="navbar-main" class="is-navbar is-push-right is-hidden-mobile">
-      <nav>
-          <ul class="is-primary-menu">
-              {{ $currentPage := . }}
-              {{ range .Site.Menus.main }}
-                <li {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}is-active{{end}}>
-                    <a href="{{ .URL }}">
+    <div id="navbar-main" class="is-navbar is-hidden-mobile">
+        <nav>
+            <ul class="is-primary-menu">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                  {{ if .HasChildren }}
+                    <li class="{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}is-active{{end}} has-children">
+                      <a href="{{ .URL }}">
                         {{ .Pre }}
                         <span>{{ .Name }}</span>
+                        <span class="caret is-down"></span>  
+                      </a>
+                      <ul class="sub-menu is-hidden">
+                          {{ range .Children }}
+                              <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                                  <a href="{{ .URL }}">{{ .Name }}</a>
+                              </li>
+                          {{ end }}
+                      </ul>
+                    </li>
+                  {{ else }}
+                    <li class="{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}is-active{{end}}">
+                      <a href="{{ .URL }}">
+                        {{ .Pre }}
+                        <span>{{ .Name }}</span>
+                      </a>
+                    </li>
+                  {{ end }}
+                  
+                {{ end }}
+              </ul>
+        </nav>
+        <nav class="is-push-right">
+            <ul class="is-secondary-menu">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.secondary }}
+                  <li class="{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}is-active{{end}}">
+                    <a href="{{ .URL }}">
+                      {{ .Pre }}
+                      <span>{{ .Name }}</span>
                     </a>
-                </li>
-              {{ end }}
+                  </li>
+                {{ end }}
             </ul>
-      </nav>
+        </nav>
     </div>
-  </div>
+  </div>  
+  
 </div>
-<div class="navigation is-global is-wrapper">
-    <div class="is-container-medium is-row">
+
+<div class="navigation is-global is-wrapper is-hidden-mobile">
+    <div class="is-container-large is-row">
       {{ .Site.Params.Description }}
     </div>
 </div>
