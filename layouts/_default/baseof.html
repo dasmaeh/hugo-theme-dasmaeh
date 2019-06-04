@@ -44,16 +44,16 @@
       <header class="header">{{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}</header>
       <main class="main is-container is-width-large is-center">
           <div class="main-sidebar">
-            ...SIDEBAR...
-            <form action="{{ "search" | absURL }}" onkeyup="executeInlineSearch()">
-                <input id="search-query" name="s" class="is-search"/>
-            </form>
-            <h2>Tags</h2>
-            <ul>
-              {{ range .Site.Taxonomies.tags }}
-                <li><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> {{ .Count }}</li>
-              {{ end }}
-            </ul>
+            
+            {{ partial "widgets/search" .}}
+
+            {{ partial "helpers/toc" . }}
+          
+            {{ partial "widgets/tagcloud" . }}
+          
+            {{ partial "widgets/recent_posts" . }}
+
+            {{ partial "widgets/social" . }}
           </div>
           <div class="main-content">
               {{ block "main" . }}{{ end }}

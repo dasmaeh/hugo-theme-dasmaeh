@@ -2,12 +2,14 @@
     font-size:.75em;
     line-height: 1.25em;
     margin-bottom: 1.5em;
-    /*background: #eee;*/
+    border-left: #ccc solid 2px;
+    margin-left:-4px;
+    padding-left: 8px;
     &.is-fixed{
       top:50px;
       padding:6px;
-      border-left: #ccc solid 2px;
-      background: #fff;
+      
+      background: rgba(255,255,255,1);
       width:240px;
       left: calc( (100% - 720px) / 2 + 620px );
       @include breakpoint($max: 1000px) {

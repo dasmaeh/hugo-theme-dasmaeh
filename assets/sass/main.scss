@@ -7,6 +7,7 @@
 @import "fonts";
 @import "header";
 @import "footer";
+@import "sidebar";
 @import "toc";
 @import "toplink";
 @import "photoswipe-custom.scss";
@@ -25,7 +26,6 @@ body{
   @include make-sidebar(240px);
   order: 2;
   margin-left: 32px;
-  border: solid 1px red;
 
   @include for-mobile {
       order: 2;
@@ -292,7 +292,7 @@ svg.iconify{
   color: $color-text-secondary;
 }
 /* Article layout */
-article header, article footer{
+article header, article footer, .is-sidebar-widget .recent{
   ul{
     margin: 4px 0 4px 20px;
     list-style: none;
