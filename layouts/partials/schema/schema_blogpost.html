@@ -1,0 +1,90 @@
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "name": "{{ .Title }}",
+        "headline": "{{ .Title }}",
+        "inLanguage": "{{ .Language }}",
+        "wordcount": {{ .WordCount }},
+        "url": "{{ .Permalink }}",
+        "mainEntityOfPage": "{{ .Permalink }}",
+        {{ with .Params.description -}}
+            "description": "{{ . | markdownify | plainify }}",
+        {{- else -}}
+            "description": "{{ .Summary | markdownify | plainify }}",
+        {{- end }}
+        {{ if not .PublishDate.IsZero -}}
+        "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05 07:00" | safeHTML }}",
+        {{- else if not .Date.IsZero -}}
+        "datePublished": "{{ .Date.Format "2006-01-02T15:04:05 07:00" | safeHTML }}",
+        {{- end }}
+        {{ with .Lastmod -}}
+        "dateModified": "{{ .Format "2006-01-02T15:04:05 07:00" | safeHTML }}",
+        {{- end }}
+        {{ $img := (.Resources.ByType "image").GetMatch "**featured*" }}
+        {{- with $img -}}
+            {{ $big := .Resize "1440x" }}
+            {{ $small := $big.Resize "720x" }}
+            "image":{
+                "@type":"ImageObject",
+                "url": "{{ $big.Permalink }}",
+                "width":"$big.Width",
+                "height":"$big.width"
+            },
+        {{- else -}}
+            {{- with .Params.featured_image -}}
+            "image":{
+                "@type":"ImageObject",
+                "url": "{{ . | absURL }}",
+                "width":"712",
+                "height":"475"
+            },
+            {{- end -}}
+        {{- end }}
+        {{ $img := (.Resources.ByType "image").GetMatch "**thumbnail*" }}
+        {{- with $img -}}
+            {{ $small := .Resize "720x" }}
+            "thumbnailURL":"{{ $small.Permalink }}",
+        {{- else -}}
+            {{- with .Params.thumbnail -}}
+            "thumbnailURL":"{{ . | absURL }}",
+            {{- end -}}
+        {{- end }}
+        {{- if .Params.author -}}
+        "author": {
+            "@type": "Person",
+            "name": "{{ .Params.author }}"
+            },
+        {{- else if .Site.Author.name -}}
+        "author": {
+            "@type": "Person",
+            "name": "{{ .Site.Author.name }}"
+        },
+        {{- end }}
+        {{ with .Site.Params.publisher -}}
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{ .name }}",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ .logo.url | absURL }}",
+            "width": {{ .logo.width }},
+            "height": {{ .logo.height }}
+          }
+        },
+        {{- end }}
+        {{ with .Params.Copyright -}}
+    "license": "{{ . }}",
+{{- else -}}
+    {{ with .Site.Copyright -}}
+        "license": "{{ . }}",
+    {{- end }}
+{{- end }}
+        {{ with .Params.tags -}}
+        "keywords": [
+            {{ range $i, $e := $.Params.tags }}{{ if $i }}, {{ end }}"{{ $e }}"{{ end }}
+        ]
+        {{- end }}
+    }
+    </pre>
+</script>

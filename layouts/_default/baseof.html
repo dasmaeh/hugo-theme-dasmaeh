@@ -37,6 +37,13 @@
 {{- template "_internal/schema.html" . -}}
 {{- template "_internal/twitter_cards.html" . -}}
 
+{{/* Structured metadata using JSON-LD */}}
+{{ if eq .Type "post"}}
+  {{ partial "schema/schema_blogpost" . }}
+{{ end }}
+{{ if eq .Type "recipe"}}
+  {{ partial "schema/schema_recipe" . }}
+{{ end }}
 </head>
 
 <body>
