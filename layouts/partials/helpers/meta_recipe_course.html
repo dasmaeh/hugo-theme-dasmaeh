@@ -1,0 +1,15 @@
+<div style="clear:left;">
+    {{ if isset .Params "course" }}
+      {{ $tagsLen := len .Params.course }}
+      {{ if gt $tagsLen 0 }}
+        <i class="iconify" data-icon="mdi-silverware"></i>
+        <ul class="course">
+          {{ range $k, $v := .Params.course }}
+            {{ $url := printf "course/%s" (. | urlize | lower) }}
+            <li><a class="article-tag-link" href="{{ $url | absLangURL }}">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    {{ end }}
+    &nbsp;
+    </div>

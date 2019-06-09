@@ -1,0 +1,15 @@
+<div style="clear:left;">
+    {{ if isset .Params "cuisine" }}
+      {{ $tagsLen := len .Params.cuisine }}
+      {{ if gt $tagsLen 0 }}
+        <i class="iconify" data-icon="mdi-map-marker"></i>
+        <ul class="cuisine">
+          {{ range $k, $v := .Params.cuisine }}
+            {{ $url := printf "cuisine/%s" (. | urlize | lower) }}
+            <li><a class="article-tag-link" href="{{ $url | absLangURL }}">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    {{ end }}
+    &nbsp;
+    </div>

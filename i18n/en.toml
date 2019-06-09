@@ -16,3 +16,20 @@ other = "contact"
 
 [privacy]
 other = "privacy"
+
+# Recipe post type:
+[Ingredients]
+other = "Ingredients"
+[Instructions]
+other = "Instructions"
+[Notes]
+other = "Notes"
+[For]
+other = "For"
+
+[Preparation]
+other = "Preparing"
+[Cooking]
+other = "Cooking"
+[Total]
+other = "Total"
