@@ -3,11 +3,14 @@
 // main.scss
 @import "vars";
 @import "custom-vars.scss";
+@import "custom-typography";
 @import "mixins";
 @import "fonts";
 @import "header";
 @import "footer";
 @import "sidebar";
+@import "boxes";
+@import "code";
 @import "toc";
 @import "toplink";
 @import "photoswipe-custom.scss";
@@ -21,11 +24,10 @@ body{
     margin:0;
   }
 }
-
 .main-sidebar {
   @include make-sidebar(240px);
   order: 2;
-  margin-left: 32px;
+  margin-left: 48px;
 
   @include for-mobile {
       order: 2;
@@ -35,61 +37,7 @@ body{
 .main-content {
   @include make-content;
   order: 1;
-  /*border: blue solid 1px;*/
 }
-
-/* accent colors - not intended for public use */
-.is-nerd{
-  color: $color-nerd;
-}
-.is-foodie{
-  color: $color-foodie;
-}
-.is-photo{
-  color: $color-photo;
-}
-.is-teacher{
-  color: $color-teacher;
-}
-
-/* general layout */
-
-//h1::after{
-//  content:'<a href="#top">up</a>';
-//}
-kbd{
-  margin: 0 4px;
-}
-ul.task-list{
-  list-style: none;
-}
-dd{
-  margin-left:24px;
-}
-table, thead, tbody{
-  max-width: $width-medium;
-}
-thead{
-  background: rgba($color-black, 0.07);
-}
-th, td{
-  padding:8px;
-}
-th:first-child,
-td:first-child{
-  padding-left: 8px;
-}
-th:last-child,
-td:last-child{
-  padding-right: 8px;
-}
-th[align="center"]{
-  text-align: center;
-}
-th[align="right"]{
-  text-align: right;
-}
-
 .is-content{
   overflow:hidden;
 }
@@ -126,171 +74,6 @@ th[align="right"]{
   float:right;
   margin-left:24px;
 }
-
-
-
-
-/* TODO: Fix margin for smaller screen sizes */
-/* TODO: design! */
-/*article aside, .is-aside{
-  position: absolute;
-  z-index: 200;
-  left: 0;
-  width: 240px;
-  margin-left: calc( (100% - 720px) / 2 + 760px );
-  border-left: solid 4px rgba($color-black, .3);
-  background: $alert-background;
-  padding: 8px 4px 16px 8px;
-  h2{
-    font-size: 1.25em;
-  }
-  ul li ul{
-    margin: 0 0 0 16px;
-    list-style: disc;
-  }
-  p:last-child{
-    margin-bottom: 0;
-  }
-}
-.is-toc{
-  z-index: 201;
-}*/
-/*
-@include breakpoint($max: 1024px) {
-  .is-aside, article aside{
-    position: relative!important;
-    z-index: 0;
-    margin:0!important;
-    display: inline-block;
-    width: 100%;
-    border: solid 1px rgba($color-black, .3);
-    border-left-width: 4px;
-    margin-bottom: 16px!important;
-    padding-bottom: 4px;
-  }
-}
-*/
-/* Boxes */
-div.is-box{
-  font-size: .9375em;
-  font-weight: 500;
-  background: #fff;
-  padding: 16px 32px 16px 16px;
-  box-shadow: none;
-  position: relative;
-  margin-bottom: 16px;
-}
-div.is-box,
-aside.is-box{
-  padding: 8px;
-  border-radius: 0;
-  border-width: 1px;
-  border-style: solid;
-  border-left-width: 4px;
-  border-color: rgba($color-black, .3);
-  background-color: rgba($color-black, .02);
-}
-article aside,
-div.is-box{
-  svg{
-    width:24px;
-    margin-right: 4px;
-  }
-}
-.is-box.is-error{
-  color: $color-error;
-  border-color: rgba($color-error, .3);
-  background-color: rgba($color-error, .07);
-  svg{
-    color: $color-error;
-  }
-}
-.is-box.is-warning{
-  color: $color-warning;
-  border-color: rgba($color-warning, .5);
-  background-color: rgba($color-warning, .07);
-  svg{
-    color: $color-warning;
-  }
-}
-.is-box.is-success{
-  color: $color-success;
-  border-color: rgba($color-success, .3);
-  background-color: rgba($color-success, .07);
-  svg{
-    color: $color-success;
-  }
-}
-aside.is-focus,
-.is-box.is-focus{
-  color: $color-focus;
-  border-color: rgba($color-focus, .3);
-  background-color: rgba($color-focus, .07);
-  svg{
-    color: $color-focus!important;
-  }
-}
-
-/* Code highlighting (no table)*/
-.highlight{
-  div{
-    border-radius: 4px;
-  }
-  pre{
-    padding: 8px 0px 8px 0px;
-    padding-left: 12px!important;
-    code{
-      margin: 0 16px;
-      margin-left: 0px!important;
-      border-radius: 0!important;
-    }
-  }
-}
-
-
-/* code highlighting (table) */
-.highlight{
-  table{
-    padding: 1rem;
-    border: 1px solid rgba(17,17,19,.08)!important;
-    border-radius: 4px;
-    pre{
-      border:none;
-      margin-left: 0!important;
-      padding-left: 0!important;
-      padding-top: 5px!important;
-      code{
-        margin: 0;
-      }
-    }
-    tr td:first-child pre{
-      border-radius: 0;
-      code {
-        span{
-          min-width: 24px;
-          display: block;
-          text-align: right;
-          /*color: #d0d0d0 !important;*/
-          padding: 0px 16px 0px 8px!important;
-          margin: 0px !important;
-          span{
-            padding: 0 !important;
-          }
-        }
-      }
-    }
-    tr td:nth-child(2){
-      width: 100%!important;
-    }
-  }
-}
-
-/* ICONS */
-svg.iconify{
-  float: left;
-  height: 24px;
-  color: $color-text-secondary;
-}
 /* Article layout */
 article header, article footer, .is-sidebar-widget .recent{
   ul{
@@ -316,7 +99,12 @@ article header, article footer, .is-sidebar-widget .recent{
     }
   }
 }
-
+/* ICONS */
+svg.iconify{
+  float: left;
+  height: 24px;
+  color: $color-text-secondary;
+}
 /* Share bar */
 article footer{
   h3{
@@ -376,5 +164,4 @@ article footer{
     margin: 0 8px;
   }
 }
-
 

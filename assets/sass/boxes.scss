@@ -1,0 +1,61 @@
+/* Boxes */
+div.is-box{
+    font-size: .9375em;
+    font-weight: 500;
+    background: #fff;
+    padding: 16px 32px 16px 16px;
+    box-shadow: none;
+    position: relative;
+    margin-bottom: 16px;
+  }
+  div.is-box,
+  aside.is-box{
+    padding: 8px;
+    border-radius: 0;
+    border-width: 1px;
+    border-style: solid;
+    border-left-width: 4px;
+    border-color: rgba($color-black, .3);
+    background-color: rgba($color-black, .02);
+  }
+  article aside,
+  div.is-box{
+    svg{
+      width:24px;
+      margin-right: 4px;
+    }
+  }
+  .is-box.is-error{
+    color: $color-error;
+    border-color: rgba($color-error, .3);
+    background-color: rgba($color-error, .07);
+    svg{
+      color: $color-error;
+    }
+  }
+  .is-box.is-warning{
+    color: $color-warning;
+    border-color: rgba($color-warning, .5);
+    background-color: rgba($color-warning, .07);
+    svg{
+      color: $color-warning;
+    }
+  }
+  .is-box.is-success{
+    color: $color-success;
+    border-color: rgba($color-success, .3);
+    background-color: rgba($color-success, .07);
+    svg{
+      color: $color-success;
+    }
+  }
+  aside.is-focus,
+  .is-box.is-focus{
+    color: $color-focus;
+    border-color: rgba($color-focus, .3);
+    background-color: rgba($color-focus, .07);
+    svg{
+      color: $color-focus!important;
+    }
+  }
+  
