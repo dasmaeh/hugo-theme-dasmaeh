@@ -1,65 +1,51 @@
-<div data-kube="sticky" class="is-navbar-box is-border-bottom">
-  <div class="is-navbar-container is-container-large is-row">
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
 
-    <div class="is-brand">
-      {{ partial "site-logo" . }}
-      <a href="#" class="nav-toggle is-push-right-mobile is-shown-mobile icon-kube-menu" data-kube="toggle"
-        data-target="#navbar-main"></a>
-    </div>
-    <div id="navbar-main" class="is-navbar is-hidden-mobile">
-      <nav>
-        <ul class="is-primary-menu">
-          {{ $currentPage := . }}
-          {{ range .Site.Menus.main }}
-          {{ if .HasChildren }}
-          <li class="{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}is-active{{end}} has-children">
-            <a href="{{ .URL }}">
-              {{ .Pre }}
-              <span>{{ .Name }}</span>
-              <span class="caret is-down"></span>
-            </a>
-            <ul class="sub-menu is-hidden">
-              {{ range .Children }}
-              <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
-                <a href="{{ .URL }}">{{ .Name }}</a>
-              </li>
-              {{ end }}
-            </ul>
-          </li>
-          {{ else }}
-          <li class="{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}is-active{{end}}">
-            <a href="{{ .URL }}">
-              {{ .Pre }}
-              <span>{{ .Name }}</span>
-            </a>
-          </li>
-          {{ end }}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-          {{ end }}
-        </ul>
-      </nav>
-      <nav class="is-push-right">
-        <ul class="is-secondary-menu">
-          {{ $currentPage := . }}
-          {{ range .Site.Menus.secondary }}
-          <li class="{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}is-active{{end}}">
-            <a href="{{ .URL }}">
-              {{ .Pre }}
-              <span>{{ .Name }}</span>
-            </a>
-          </li>
-          {{ end }}
-        </ul>
-      </nav>
-    </div>
-  </div>
+    
+    {{ hugo.Generator }}
+    
+    {{/* Alternative Output (RSS, ...) */}}
+    {{ range .AlternativeOutputFormats -}}
+      {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ end -}}
+    {{/* Kube CSS */}}
+    <link rel="stylesheet" href="/kube/css/kube.min.css">
+    {{/* Theme SASS */}}
+    {{ $options := (dict "targetPath" "/css/main.css" "outputStyle" "compressed" "enableSourceMap" true) }}
+    {{ $style := resources.Get "/sass/main.scss" | resources.ToCSS $options }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
-</div>
+    {{/* Custom CSS */}}
+    {{ with .Site.Params.custom_css }}
+        <link rel="stylesheet" href="{{ relURL ($.Site.BaseURL) }}{{ . }}" type="text/css">
+    {{ end }}
+    
+    {{/* Favicon */}}
+    {{ if .Site.Params.favicon }}
+      <link rel="shortcut icon" href="/{{ .Site.Params.favicon }}" type="image/x-icon" />
+    {{ end }}
 
-<div class="navigation is-global is-wrapper is-hidden-mobile">
-  <div class="is-container-large is-row">
-    {{ .Site.Params.Description }}
-  </div>
-</div>
-<!-- spacer -->
-<div class="is-wrapper is-stack-40"></div>
+{{/* NOTE: These Hugo Internal Templates can be found starting at https://github.com/spf13/hugo/blob/master/tpl/tplimpl/template_embedded.go#L158 */}}
+{{/* TODO: make these snippes content aware for different post types like recipes, ... */}}
+{{- template "_internal/opengraph.html" . -}}
+{{- template "_internal/google_news.html" . -}}
+{{- template "_internal/schema.html" . -}}
+{{- template "_internal/twitter_cards.html" . -}}
+
+{{/* Structured metadata using JSON-LD */}}
+{{ if eq .Type "post"}}
+  {{ partial "schema/schema_blogpost" . }}
+{{ end }}
+{{ if eq .Type "recipe"}}
+  {{ partial "schema/schema_recipe" . }}
+{{ end }}
+</head>
+
+<body>
+    <div class="page ">
+      <header class="header">{{ block "header" . }}{{ partial "site-menu.html" .}}{{ end }}</header>

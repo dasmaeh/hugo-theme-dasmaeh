@@ -1,15 +1,23 @@
-{{/* Site footer */}}
-<div class="is-border-top is-site-footer">
-  <div class="is-container is-width-large is-center">
-    <div  class="is-footer-row is-width-large">
-      <div class="is-brand">
-        {{ .Site.Params.Owner | safeHTML }}
-      </div>
-      {{/* License / copyright line */}}
-        <div class="is-license">
-          {{ .Site.Params.copyright | safeHTML }}
+<footer class="footer">
+    {{ block "footer" . }}
+      {{/* Site footer */}}
+      <div class="is-border-top is-site-footer">
+        <div class="is-container is-width-large is-center">
+          <div  class="is-footer-row is-width-large">
+            <div class="is-brand">
+              {{ .Site.Params.Owner | safeHTML }}
+            </div>
+            {{/* License / copyright line */}}
+              <div class="is-license">
+                {{ .Site.Params.copyright | safeHTML }}
+              </div>
+            
+          </div>
         </div>
-      
-    </div>
-  </div>
+      </div>
+    {{ end }}
+    {{ block "scripts" . }}{{ partial "site-scripts.html" }}{{ end }}
+</footer>
 </div>
+</body>
+</html>
