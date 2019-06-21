@@ -1,9 +1,12 @@
 <!-- TODO: Make meta data multilingual: https://gohugo.io/content-management/multilingual/#customize-dates -->
 <!--<div class="is-row">-->
   <!--<time class="is-col is-80 -->
+    
   <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
-    Published on {{ .Date.Day }}. {{ .Date.Month }} {{ .Date.Year }}{{ if ne .Date .Lastmod }}, last updated on {{ .Lastmod.Day }}. {{ .Lastmod.Month }} {{ .Lastmod.Year }}{{ end }}
+     {{ i18n "Published_on" }} {{ .Date.Day }}. {{ index $.Site.Data.months (printf "%d_%s" .Date.Month .Language) }} {{ .Date.Year }}
+     {{ if ne .Date .Lastmod }}, {{ i18n "last_updated_on" }} {{ .Lastmod.Day }}. {{ index $.Site.Data.months (printf "%d_%s" .Date.Month .Language) }} {{ .Lastmod.Year }}{{ end }}
   </time>
+  
   <!--{{ if .Site.Params.includeReadingTime }}
     <time class="is-col is-20 is-text-right meta-reading-time">{{ .ReadingTime }} minute read</time>
   {{ end }}

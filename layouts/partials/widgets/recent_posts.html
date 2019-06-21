@@ -1,5 +1,5 @@
 <div class="is-sidebar-widget">
-    <h2>Recent Posts</h2>
+    <h2>{{ i18n "Recent_Posts" }}</h2>
     <ul class="recent">
         {{ range first 5 (where (where .Site.Pages "Type" "post") "IsPage" true) }}
         <li>
