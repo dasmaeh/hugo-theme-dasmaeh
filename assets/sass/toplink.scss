@@ -1,0 +1,14 @@
+.is-toplink{
+    position: fixed;
+    bottom: 0;
+    width: 48px;
+    margin-left: calc( (100% - 1000px) / 2 + 304px );
+    z-index: 100;
+    border: none;
+    background: none;
+    a span{
+      color: lightgray;
+      /*background: white;*/
+      font-size: 3em;
+    }
+  }

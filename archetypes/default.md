@@ -1,3 +1,4 @@
-+++
-type = "post"
-+++
+---
+type: post
+socialshare: true
+---

@@ -1,0 +1,71 @@
+{{/* Special layout for an alphabetical index of all recipes */}}
+
+{{ partial "site-header" . }}
+  <main class="main is-container is-width-large is-center">
+    {{ partial "site-sidebar" .}}
+    <div class="main-content">
+    {{ block "main" . }}
+    <div class="is-container is-container-medium is-center">
+      <div class="is-content is-stack-40">
+          <div class="is-stack-40">
+              <a name="top"></a>
+              <h1>{{ .Title }}</h1>
+
+              {{ partial "toplink" }}
+              {{ .Content }}
+
+              {{ partial "helpers/nav-alphabet" }}
+
+              {{ $scratch := newScratch }}
+              {{/* Get recipes */}}
+              {{ $paginator := .Paginate (where .Pages "Type" "recipe") }}
+              {{/* Preset some variable */}}
+              {{ $scratch.Set "letter" "" }}{{/* First letter of the titles, used for grouping and headlines */}}
+              {{ $scratch.Set "count" 0 }}{{/* Number of the recipes done */}}
+              {{ $scratch.Set "countcols" 1 }}{{/* Number of the column currently filing in */}}
+              {{ $scratch.Set "numcols" 3 }}{{/* Total number of columns, could become an option ... */}}
+              {{ $scratch.Set "nextcol" ( div (.Paginator.TotalNumberOfElements) ($scratch.Get "numcols" | float) ) }}{{/* Number of the recipe to start the next column on*/}}
+              
+              <div class="is-row">
+                <div class="is-col ">
+                {{ range .Paginator.Pages }}
+            
+                  {{ if ne ( $scratch.Get "letter")  (substr .Title 0 1) }}
+                  {{/* Time to start a new block*/}}
+                    {{ if ne ( $scratch.Get "letter")  "" }}
+                    {{/* Close the list of the last letter, just not the first time we run through here */}}
+                      </ul>
+                    {{ end }}
+                    
+                    {{ if ge ( $scratch.Get "count" ) ( $scratch.Get "nextcol") }}
+                    {{/* if count > nextcol => start new column */}}
+                      </div><div class="is-col ">
+                      {{ $scratch.Set "countcols" ( add ( $scratch.Get "countcols") 1) }} {{/* Increment column counter */}}
+                      {{ $scratch.Set "nextcol" ( mul ( div ($paginator.TotalNumberOfElements) ($scratch.Get "numcols" | float)) ($scratch.Get "countcols" ) ) }}
+                      {{/* Recalculate nexcol */}}
+                    {{ end }}
+
+                    {{ $scratch.Set "letter" (substr .Title 0 1) }}{{/* Set the variable to the new starting letter */}}
+                    <h2><a name="{{ ( $scratch.Get "letter") }}"></a>{{ ( $scratch.Get "letter") }}</h2>
+                    <ul>
+                  {{ end }}
+
+                  {{ $scratch.Set "count" ( add ( $scratch.Get "count") 1) }}{{/* Increment recipe counter */}}
+                  <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                {{ end }}
+                {{ if gt $paginator.TotalNumberOfElements 0}}
+                  </ul></div>{{/* End the last list block, only if list is not empty */}}
+                {{ end }}
+              </div>
+
+              {{ partial "helpers/nav-alphabet" }}
+              
+            </div>
+          </div>
+      </div>
+    {{ end }}
+  </div>
+  </main>
+
+
+{{ partial "site-footer" .}}

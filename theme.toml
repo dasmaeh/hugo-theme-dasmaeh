@@ -3,13 +3,13 @@
 
 name = "Dasmaeh"
 license = "MIT"
-licenselink = "https://github.com/dasmaeh/hugo-theme-dasmaeh/blob/master/LICENSE"
+licenselink = "https://github.com/jckoester/hugo-theme-jckoester/blob/master/LICENSE"
 description = "My personal theme for gohugo. Still very much work in progress."
-homepage = "https://github.com/dasmaeh/hugo-theme-dasmaeh"
+homepage = "https://github.com/jckoester/hugo-theme-jckoester"
 tags = ["blog"]
 features = ["html5", "css3", "responsive"]
 min_version = 0.15
 
 [author]
   name = "Jan Köster (dasmaeh)"
-  homepage = "https://dasmaeh.de"
+  homepage = "https://jckoester.de"

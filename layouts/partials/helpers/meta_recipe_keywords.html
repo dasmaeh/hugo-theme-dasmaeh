@@ -1,0 +1,15 @@
+<div>
+    {{ if isset .Params "keywords" }}
+      {{ $tagsLen := len .Params.keywords }}
+      {{ if gt $tagsLen 0 }}
+        <i class="iconify" data-icon="mdi-tag-multiple"></i>
+        <ul class="tags">
+          {{ range $k, $v := .Params.keywords }}
+            {{ $url := printf "keywords/%s" (. | urlize | lower) }}
+            <li><a class="article-tag-link" href="{{ $url | absLangURL }}">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    {{ end }}
+    &nbsp;
+    </div>

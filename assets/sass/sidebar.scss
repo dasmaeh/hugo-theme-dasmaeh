@@ -1,0 +1,43 @@
+/* Sidebar and Widgets */
+
+.is-sidebar-widget{
+    margin-bottom: 1em;
+    padding-left:4px;
+    h2{
+      font-size: 1.5em;
+    }
+    h3{
+      font-size: 1em;
+      margin-bottom: 0.25em;
+    }
+    /* Latest Posts widget */
+    .recent{
+      margin: 0;
+      list-style: none;
+      li{
+        border-bottom: solid 1px #ccc;
+        margin-top:8px;
+        div{
+          display: inline-block;
+          line-height: .75em;
+          margin: 0;
+          svg{
+            height:16px;
+            width: 16px;
+            font-size: 1em;
+          }
+        }
+        li{
+          border:0;
+          margin: 0;
+        }
+        .categories, .tags{
+          font-size: 0.75em;
+        }
+      }
+  
+    }
+    .social svg{
+      width:32px;
+    }
+  }

@@ -1,0 +1,17 @@
+<article class="is-stack-40">
+    <a href="{{ .RelPermalink }}">
+        <h2 class="is-stack-8">{{ .Title }}</h2>
+    </a>
+    <div style="float:left; margin-right:20px;">{{ partial "helpers/thumbnail.html" . }}</div>
+    {{ partial "helpers/meta_time.html" . }}
+    <div class="summary" style="min-height:150px">
+        {{ .Params.Description }}
+        <br /><a href="{{ .RelPermalink }}">Read More…</a>
+    </div>
+    <footer class="is-border-top">
+        {{ partial "helpers/meta_categories.html" . }}
+        {{ partial "helpers/meta_recipe_keywords.html" . }}
+        {{ partial "helpers/meta_recipe_cuisine.html" . }}
+        {{ partial "helpers/meta_recipe_course.html" . }}
+    </footer>
+</article>

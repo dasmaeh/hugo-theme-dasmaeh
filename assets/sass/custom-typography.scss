@@ -1,0 +1,33 @@
+/*Custom Typography */
+kbd{
+    margin: 0 4px;
+  }
+  ul.task-list{
+    list-style: none;
+  }
+  dd{
+    margin-left:24px;
+  }
+  table, thead, tbody{
+    max-width: $width-medium;
+  }
+  thead{
+    background: rgba($color-black, 0.07);
+  }
+  th, td{
+    padding:8px;
+  }
+  th:first-child,
+  td:first-child{
+    padding-left: 8px;
+  }
+  th:last-child,
+  td:last-child{
+    padding-right: 8px;
+  }
+  th[align="center"]{
+    text-align: center;
+  }
+  th[align="right"]{
+    text-align: right;
+  }

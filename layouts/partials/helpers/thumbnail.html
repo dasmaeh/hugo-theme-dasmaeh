@@ -6,6 +6,6 @@
     <img srcset="{{ $small.RelPermalink }} 1x, {{ $big.RelPermalink }} 2x" alt="{{ $img.Title }}" width="{{ $big.Width }}" >
 {{ else }}
   {{ with .Params.thumbnail }}
-    <img src="{{ $.Site.BaseURL }}{{ . }}" alt="Post thumbnail image">
+    <img src="{{ $.Site.BaseURL }}{{ . }}" width="220px" alt="Post thumbnail image">
   {{ end }}
 {{ end }}

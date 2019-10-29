@@ -1,0 +1,12 @@
+<div class="is-sidebar-widget">
+    <h2>{{ i18n "Recent_Posts" }}</h2>
+    <ul class="recent">
+        {{ range first 5 (where (where .Site.Pages "Type" "post") "IsPage" true) }}
+        <li>
+            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            {{ partial "helpers/meta_categories.html" . }}
+            {{ partial "helpers/meta_tags.html" . }}
+        </li>
+        {{ end }}
+    </ul>
+</div>

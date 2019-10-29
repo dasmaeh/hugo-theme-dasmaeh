@@ -1,0 +1,26 @@
+/* Site footer */
+.is-site-footer{
+    border-top: solid 4px lightgray;
+    .is-footer-row{
+      background: #fff;
+      position: absolute;
+      z-index: 101;
+      width: 100%;
+    }
+    .is-logo{
+      font-family: 'FiraSans';
+    }
+    .is-brand a{
+      text-decoration: none;
+      font-family: 'FiraSans';
+      color: $color-text;
+    }
+    .is-license{
+      opacity: 0.55;
+      img{
+        margin-right: 8px;
+      }
+    }
+  
+  }
+  

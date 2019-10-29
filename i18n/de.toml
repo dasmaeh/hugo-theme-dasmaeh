@@ -1,0 +1,50 @@
+
+# Prev/next navigation
+[previous]
+other = "zurück"
+
+[next]
+other = "vor"
+
+
+# site footer
+[about]
+other = "Über mich"
+
+[impressum]
+other = "Impressum"
+
+[privacy]
+other = "Datenschutz"
+
+# Meta time
+[Published_on]
+other = "Veröffentlicht am"
+[last_updated_on]
+other = "zuletzt geändert am"
+
+
+# Recipe post type:
+[Ingredients]
+other = "Zutaten"
+[Instructions]
+other = "Zubereitung"
+[Notes]
+other = "Notizen"
+[For]
+other = "Für"
+
+[Preparation]
+other = "Vorbereiten"
+[Cooking]
+other = "Kochen"
+[Total]
+other = "Gesamt"
+
+# Sidebar widgets
+[Recent_Posts]
+other = "Neueste Beiträge" 
+[Tags]
+other = "Tags"
+[Social]
+other = "Social"

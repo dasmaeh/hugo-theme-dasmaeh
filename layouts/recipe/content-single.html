@@ -1,0 +1,97 @@
+<div class="is-container is-container-medium is-center">
+
+<article class="is-content is-stack-40">
+
+  <header class="is-stack-24">
+
+    {{ partial "helpers/featured.html" . }}
+
+    <a name="top"></a>
+    <h1 class="is-stack-16">{{ .Title }}</h1>
+
+    {{ partial "helpers/meta_time.html" . }}
+    <div class="is-row">
+      <div class="is-col is-75">{{ partial "helpers/meta_categories.html" . }}
+          {{ partial "helpers/meta_recipe_keywords.html" . }}
+          {{ partial "helpers/meta_recipe_cuisine.html" . }}
+          {{ partial "helpers/meta_recipe_course.html" . }}</div>
+      <div class="is-col is-25">
+        {{ with $time := .Params.preptime }}
+          <div class="is-container">
+            <div><span class="iconify" data-icon="mdi-progress-clock"></span>&nbsp;{{ i18n "Preparation" }}:</div>
+            {{ $time := replace $time "M" "min" }}
+            {{ $time := replace $time "H" "h " }}
+            <div class="is-push-right">{{ $time }}</div>
+          </div>  
+        {{ end }}
+        {{ with $time := .Params.cooktime }}
+          <div class="is-container">
+            <div><span class="iconify" data-icon="mdi-progress-clock"></span>&nbsp;{{ i18n "Cooking" }}:</div>
+            {{ $time := replace $time "M" "min" }}
+            {{ $time := replace $time "H" "h " }}
+            <div class="is-push-right">{{ $time }}</div>
+          </div>
+        {{ end }}
+        {{ with $time := .Params.totaltime }}
+        <div class="is-container">
+          <div><span class="iconify" data-icon="mdi-progress-clock"></span>&nbsp;{{ i18n "Total" }}:</div>
+            {{ $time := replace $time "M" "min" }}
+            {{ $time := replace $time "H" "h " }}
+            <div class="is-push-right">{{ $time }}</div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+    
+  </header>
+
+  {{ partial "toplink" .}}
+
+  {{ with .Params.description }}
+  <p>{{ . | markdownify }}</p>
+  {{ end }}
+
+  <h2>{{ i18n "Ingredients" }}</h2>
+  {{ with .Params.yield }}
+  <p class="recipe_yield">{{ i18n "For" }}: {{ .  }}</p>
+  {{ end }}
+  <ul>
+      {{ range .Params.recipe_ingredients }}
+        <li>{{ . | markdownify }}</li>  
+      {{ end }}
+  </ul>
+
+  <h2>{{ i18n "Instructions" }}</h2>
+  <ol>
+      {{ range $elem_index, $elem_val := .Params.instructions }}
+      <li>
+        {{ $elem_val }}
+      {{ $src := index $.Params.instruction_images ( $elem_index | int )}}
+      {{ $thumb := index $.Params.instruction_images ( $elem_index | int ) }}
+      {{ if $src }}
+      <div class="box fancy-figure" >
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+            <div>
+              <img itemprop="thumbnail" src="{{ $thumb | absURL }}" /><!-- <img> hidden if in .gallery -->
+              <a href="{{ $src | absURL }}" itemprop="contentUrl"></a>
+            </div>
+        </figure>
+        </div>
+      {{ end }}
+      </li>
+      {{ end }}
+  </ol>
+
+  {{ with .Params.notes }}
+  <h2>{{ i18n "Notes" }}</h2>
+  <p>{{ . | markdownify }}</p>
+  {{ end }}
+
+  <footer class="is-border-top is-stack-20">
+    {{ partial "helpers/social_share.html" . }}
+  </footer>
+</article>
+</div>
+
+{{/* partial "helpers/nav_prevnext.html" . */}}
+{{ partial "helpers/nav_related.html" . }}

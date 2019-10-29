@@ -1,3 +1,4 @@
+<div class="is-container is-container-medium is-center">
 <article class="is-content is-stack-40">
 
   <header class="is-stack-24">
@@ -7,12 +8,12 @@
     <a name="top"></a>
     <h1 class="is-stack-16">{{ .Title }}</h1>
 
-    {{ partial "helpers/meta_time.html" . }}
+    {{ if .Date }}
+      {{ partial "helpers/meta_time.html" . }}
+    {{ end }}
     {{ partial "helpers/meta_categories.html" . }}
     {{ partial "helpers/meta_tags.html" . }}
   </header>
-
-  {{ partial "helpers/toc.html" . }}
 
   {{ partial "toplink" .}}
 
@@ -23,3 +24,4 @@
     {{ partial "helpers/social_share.html" . }}
   </footer>
 </article>
+</div>

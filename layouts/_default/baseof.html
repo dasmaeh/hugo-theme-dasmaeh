@@ -1,50 +1,8 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Basic Template</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    
-    {{ .Hugo.Generator }}
-    
-    {{/* Alternative Output (RSS, ...) */}}
-    {{ range .AlternativeOutputFormats -}}
-      {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-    {{ end -}}
-    {{/* Kube CSS */}}
-    <link rel="stylesheet" href="/kube/css/kube.min.css">
-    {{/* Theme SASS */}}
-    {{ $options := (dict "targetPath" "/css/main.css" "outputStyle" "compressed" "enableSourceMap" true) }}
-    {{ $style := resources.Get "/sass/main.scss" | resources.ToCSS $options }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-
-    {{/* Custom CSS */}}
-    {{ with .Site.Params.custom_css }}
-        <link rel="stylesheet" href="{{ relURL ($.Site.BaseURL) }}{{ . }}" type="text/css">
-    {{ end }}
-    
-    {{/* Favicon */}}
-    {{ if .Site.Params.favicon }}
-      <link rel="shortcut icon" href="/{{ .Site.Params.favicon }}" type="image/x-icon" />
-    {{ end }}
-
-{{/* NOTE: These Hugo Internal Templates can be found starting at https://github.com/spf13/hugo/blob/master/tpl/tplimpl/template_embedded.go#L158 */}}
-{{/* TODO: make these snippes content aware for different post types like recipes, ... */}}
-{{- template "_internal/opengraph.html" . -}}
-{{- template "_internal/google_news.html" . -}}
-{{- template "_internal/schema.html" . -}}
-{{- template "_internal/twitter_cards.html" . -}}
-
-</head>
-
-<body>
-    {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
-    <div class="is-wrapper is-stack-40">
-    {{ block "main" . }}{{ end }}
+{{ partial "site-header" . }}
+  <main class="main is-container is-width-large is-center">
+    {{ partial "site-sidebar" .}}
+    <div class="main-content">
+      {{ block "main" . }}{{ end }}
     </div>
-    {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
-    {{ block "scripts" . }}{{ partial "site-scripts.html" }}{{ end }}
-</body>
-</html>
+  </main>
+  {{ partial "site-footer.html" . }}
