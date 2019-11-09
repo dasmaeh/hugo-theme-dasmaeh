@@ -10,7 +10,18 @@
         <div class="is-col is-33 is-border">
             <!-- Thumbnail image -->
             <a href="{{ .RelPermalink }}">
-                {{ .Render "thumbnail" }}
+                <!--{{ .Render "thumbnail" }}-->
+                <!-- Title image -->
+                {{ $img := (.Resources.ByType "image").GetMatch "**thumbnail*" }}
+                {{ with $img }}
+                {{ $big := .Resize "440x" }}
+                {{ $small := $big.Resize "220x" }}
+                    <img srcset="{{ $small.RelPermalink }} 1x, {{ $big.RelPermalink }} 2x" alt="{{ $img.Title }}" width="{{ $big.Width }}" >
+                {{ else }}
+                {{ with .Params.thumbnail }}
+                    <img src="{{ $.Site.BaseURL }}{{ . }}" width="220px" alt="Post thumbnail image">
+                {{ end }}
+                {{ end }}
             </a>
             <a href="{{ .RelPermalink }}" class="is-post-title">{{ .Title }}</a>
             <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
